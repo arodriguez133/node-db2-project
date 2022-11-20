@@ -4,14 +4,14 @@ exports.up = function (knex) {
   return knex.schema.createTable('cars', (tbl) => {
     tbl.increments();
     tbl.string('vin')
-      .dropNullable()
+      .notNullable()
       .unique();
     tbl.string('make')
-      .dropNullable();
+      .notNullable();
     tbl.string('model')
-      .dropNullable();
+      .notNullable();
     tbl.decimal('mileage', { precision: null })
-      .dropNullable();
+      .notNullable();
     tbl.string('title');
     tbl.string('tansmission');
   })
