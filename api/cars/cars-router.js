@@ -1,5 +1,5 @@
 const Car = require('./cars-model');
-
+const mw = require('./cars-middleware');
 const router = require('express').Router();
 
 
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', mw.checkCarPayload, async (req, res, next) => {
     const createdCar = req.body;
     try {
         const newCar = await Car.create(createdCar);

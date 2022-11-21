@@ -12,11 +12,24 @@ const checkCarId = async (req, res, next) => {
     } else {
       next();
     }
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+      stack: err.stack
+    })
   }
 }
 
 const checkCarPayload = (req, res, next) => {
-  // DO YOUR MAGIC
+  for (let key in req.body) {
+    if (key === null) {
+      res.status(404).json({
+        message: `${key} is missing`
+      })
+    } else {
+      next();
+    }
+  }
 }
 
 const checkVinNumberValid = (req, res, next) => {
@@ -26,3 +39,10 @@ const checkVinNumberValid = (req, res, next) => {
 const checkVinNumberUnique = (req, res, next) => {
   // DO YOUR MAGIC
 }
+
+module.exports =
+{
+  checkCarId,
+  checkCarPayload
+}
+
