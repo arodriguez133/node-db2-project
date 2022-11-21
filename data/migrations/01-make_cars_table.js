@@ -13,7 +13,7 @@ exports.up = function (knex) {
     tbl.decimal('mileage', { precision: null })
       .notNullable();
     tbl.string('title');
-    tbl.string('tansmission');
+    tbl.string('transmission');
   })
 };
 
